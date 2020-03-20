@@ -26,6 +26,7 @@ public class CustomerController {
     @GetMapping("/list")
     public String listCustomers(Model model) {
         List<Customer> customerList;
+        long begin = System.currentTimeMillis();
         try {
             customerList = customerService.getCustomers();
             logger.debug("===== list customer =======");
@@ -34,7 +35,8 @@ public class CustomerController {
         } catch (Exception ex) {
             logger.error(ex.toString());
         }
-
+        long end = System.currentTimeMillis();
+        logger.debug("duration : > "+ (end - begin) + "millis");
         return "list-customers";
     }
 

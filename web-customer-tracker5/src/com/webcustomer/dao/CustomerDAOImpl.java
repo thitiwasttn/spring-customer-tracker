@@ -23,38 +23,38 @@ public class CustomerDAOImpl implements CustomerDAO {
     @Override
 //    @Transactional
     public List<Customer> getCustomers() throws Exception {
-        logger.debug("====== get customers ======");
+//        logger.debug("====== get customers ======");
 
         Session session = sessionFactory.getCurrentSession();
         Query<Customer> customerQuery = session.createQuery("from Customer order by first_name asc",Customer.class);
         List<Customer> customers = customerQuery.getResultList();
 
-        logger.debug("customer == >" + Arrays.toString(customers.toArray()));
+//        logger.debug("customer == >" + Arrays.toString(customers.toArray()));
         return customers;
     }
 
     @Override
     public void saveCustomer(Customer customer) throws Exception {
-        logger.debug("====== save customer ======");
+//        logger.debug("====== save customer ======");
         Session session = sessionFactory.getCurrentSession();
         System.out.println("customer ++ > "+ customer);
         session.saveOrUpdate(customer);
-        logger.debug("======== saved ========");
+//        logger.debug("======== saved ========");
     }
 
     @Override
     public Customer getCustomers(int id) throws Exception {
-        logger.debug("===== get customer by id ====== ");
-        logger.debug("id ==> "+ id);
+//        logger.debug("===== get customer by id ====== ");
+//        logger.debug("id ==> "+ id);
         Customer customer = sessionFactory.getCurrentSession().get(Customer.class,id);
-        logger.debug("======= out of get customer by id");
+//        logger.debug("======= out of get customer by id");
         return customer;
     }
 
     @Override
     public void deleteCustomer(int id) throws Exception {
-        logger.debug("====== delete Customer ======");
-        logger.debug("id ==> "+ id);
+//        logger.debug("====== delete Customer ======");
+//        logger.debug("id ==> "+ id);
         Session session = sessionFactory.getCurrentSession();
 //        Customer customer = session.get(Customer.class,id);
         Query<Customer>customerQuery = session.createQuery("delete from Customer where id = :id");
@@ -62,7 +62,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         customerQuery.executeUpdate();
 //        logger.debug("===== delete this => "+ customer);
 //        session.delete(customer);
-        logger.debug("===== delete done =====");
+//        logger.debug("===== delete done =====");
     }
 
 
